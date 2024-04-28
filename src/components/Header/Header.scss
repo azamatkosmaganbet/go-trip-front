@@ -1,0 +1,74 @@
+@import "../../styles/mixins";
+
+.header {
+  background-color: #ffffff;
+  padding: 20px 0;
+  border-bottom: 1px solid #e0e0e0;
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    .header-logo img {
+      height: 40px;
+    }
+
+    
+
+    .header-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-grow: 0.5;
+
+      .header-button {
+        border: none;
+        background: none;
+        cursor: pointer;
+        margin-right: 10px;
+
+        img {
+          height: 30px;
+        }
+      }
+    }
+    .header-auth-button_right {
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 10px;
+      background-color: #FB6542;
+      color: #ffffff;
+      min-width: 80px; 
+      text-align: center; 
+    }
+
+    .header-auth-button:first-child {
+      margin-right: 10px;
+    }
+
+    .header-auth-button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border: 1px solid;
+      border-radius: 10px;
+      border-color: #375E97;
+      background-color: #ffffff;
+      color: #375E97;
+      min-width: 80px; 
+      text-align: center; 
+    }
+
+    .header-auth-button:first-child {
+      margin-right: 10px;
+    }
+    
+  }
+}
