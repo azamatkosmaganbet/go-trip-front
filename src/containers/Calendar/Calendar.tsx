@@ -8,6 +8,7 @@ import { observer } from "mobx-react-lite";
 import { IBooking } from "@/interfaces/IBooking";
 import { IoStarSharp } from "react-icons/io5";
 const MyCalendar = () => {
+ 
   const { store } = useContext(Context);
   useEffect(() => {
     if (store.user.id) {

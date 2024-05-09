@@ -21,7 +21,7 @@ const Register = () => {
 
     try {
       await store.registration(email, password, name, surname, phone, navigate);
-
+      await store.login(email, password, navigate);
       setEmail("");
       setName("");
       setSurname("");
@@ -32,15 +32,14 @@ const Register = () => {
       alert("Что то пошло не так");
     }
   };
-  console.log();
-  
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       store.checkAuth().then(() => {
         navigate("/");
       });
     }
-  },  [navigate,store]);
+  }, [navigate, store]);
 
   if (store.isLoading) {
     return <Spinner />;

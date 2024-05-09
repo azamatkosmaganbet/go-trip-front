@@ -8,18 +8,17 @@ import { BASE_URL } from "@/constants/api";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 
-
 function MakeBooking() {
   const { store } = useContext(Context);
   const [date, setDate] = useState<string>("");
   const { id } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     if (id) {
       store.getTripById(id);
     }
   }, [id, store]);
-  
+
   const onSubmit = () => {
     let data: IBookingPost = {
       date: date,
@@ -30,11 +29,11 @@ function MakeBooking() {
       guideId: store.trip.guide._id,
       userId: store.user.id,
     };
-    
+
     store.setFirstModal(false);
     store.setSecondModal(true);
     store.createBooking(data);
-    navigate('/info/calendar');
+    navigate("/");
   };
   return (
     <div>
@@ -44,17 +43,17 @@ function MakeBooking() {
       >
         <Modal.Header closeButton>
           <Modal.Title className="modal-title">
-            <h1> Бронировать</h1>{" "}
+            <h1> Booking</h1>{" "}
             <p>
-              Сейчас вы ничего не платите и ни на что не подписываетесь 😉 Эта
-              форма перенесет вас в чат с локали, чтобы обсудить программу.
+              You are not going to pay anything, after that you are going to
+              chat to talk about the tour in detail with host.
             </p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={onSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Ваш локали </Form.Label>
+              <Form.Label>Host</Form.Label>
               <div className="modal-user">
                 <div
                   style={{
@@ -67,38 +66,52 @@ function MakeBooking() {
                 </p>
               </div>
             </Form.Group>
+            <div className="flex-module">
+              <div>
+                <Form.Label>Where</Form.Label>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Select aria-label="Default select example">
+                    <option>{store.trip.title}</option>
+                  </Form.Select>
+                </Form.Group>
+              </div>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Где </Form.Label>
-              <Form.Select aria-label="Default select example">
-                <option>{store.trip.title}</option>
-              </Form.Select>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Дата </Form.Label>
-              <Form.Control
-                value={date}
-                onChange={(e) => {
-                  setDate(e.target.value);
-                }}
-                type="date"
-                placeholder=""
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Как с вами связаться?</Form.Label>
-              <Form.Control
-                value={store.user.phone}
-                type="tel"
-                placeholder="Ваш номер телефона"
-              />
-            </Form.Group>
+              <div>
+                <Form.Label>When</Form.Label>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Control
+                    value={date}
+                    onChange={(e) => {
+                      setDate(e.target.value);
+                    }}
+                    type="date"
+                    placeholder=""
+                  />
+                </Form.Group>
+              </div>
+            </div>
+            <div className="form-contacts">
+              <Form.Label>YOUR CONTACTS</Form.Label>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Control
+                  value={store.user.phone}
+                  type="tel"
+                  placeholder="Ваш номер телефона"
+                />
+              </Form.Group>
+            </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          
           <Button
             type="submit"
             variant="btn text-white bg-orange"

@@ -125,7 +125,6 @@ export default class Store {
         phone,
       );
       localStorage.setItem("token", response.data.accessToken);
-      console.log(response);
 
       this.setAuth(true);
       this.setUser(response.data.user);
