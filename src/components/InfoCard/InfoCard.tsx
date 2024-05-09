@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import "./InfoCard.scss";
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";

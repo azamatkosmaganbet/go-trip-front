@@ -1,10 +1,10 @@
 import $api from "@/features/http";
-import { IBooking } from "@/interfaces/IBooking";
+import { IBooking, IBookingPost } from "@/interfaces/IBooking";
 import { AxiosResponse } from "axios";
 
 
 export default class BookingService {
-  static createBooking(data: IBooking): Promise<AxiosResponse<IBooking>> {
+  static createBooking(data: IBookingPost): Promise<AxiosResponse<IBooking>> {
     return $api.post<IBooking>(`/create/booking`, data);
   }
 

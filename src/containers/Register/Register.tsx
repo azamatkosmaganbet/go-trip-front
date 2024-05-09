@@ -1,7 +1,7 @@
 
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Form, Spinner } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "./Register.scss";
 import { Context } from "@/store/context";
 import { observer } from "mobx-react-lite";

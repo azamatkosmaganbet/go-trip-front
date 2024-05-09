@@ -11,6 +11,8 @@ import Main from "./containers/Main/Main";
 import Application from "./containers/Account/application/application";
 import Interview from "./containers/Account/application/interview/Interview";
 import MyCalendar from "./containers/Calendar/Calendar";
+import Guide from "./containers/Guide/Guide";
+import MakeBookingModal from "./containers/Booking/modal/makeBookingModal";
 function App() {
   return (
     <BrowserRouter>
@@ -25,12 +27,15 @@ function App() {
         <Route element={<Application />} path="/account/application" />
         <Route element={<Interview />} path="/info/interview" />
         <Route element={<MyCalendar />} path="/info/calendar" />
+        <Route element={<Guide />} path="/guide/:id" />
+        <Route element={<MakeBookingModal />} path="/booking" />
+        <Route element={<MakeBookingModal />} path="/trip/:id" />
           {/* 
          
           
           
           <Route element={<Verification />} path="/verification" />
-          <Route element={<GuidePage />} path="/guide/:id" />
+         
           <Route element={<TourPage />} path="/tour/:id" />
           <Route element={<City />} path="/city/:id" />
           <Route element={<CreateCity />} path="/create/city" />

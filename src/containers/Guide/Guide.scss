@@ -1,0 +1,580 @@
+@import "../../styles/mixins";
+
+.guide-flex {
+  display: flex;
+  padding: 50px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  @include _744 {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+}
+
+.guide-profile-right {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  @include _744 {
+    width: 100%;
+  }
+}
+
+.guide-profile {
+  flex-grow: 0.8;
+  display: flex;
+  padding-top: 108px;
+  flex-flow: row;
+  flex-direction: column;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  
+  @include _744 {
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    display: flex;
+    padding-top: 0px;
+    padding-bottom: 32px;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1062px;
+    width: 100%;
+  }
+}
+
+.guide-profile-avatar {
+  height: 300px;
+  min-width: 325px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: -65px 50px 0px 50px;
+  position: relative;
+
+  @include _744 {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    --hc-sm-height: 400;
+    --hc-sm-width: 400;
+    --hc-md-height: 588;
+    --hc-md-width: 744;
+    --hc-lg-height: 564;
+    --hc-lg-width: 1128;
+    height: calc(var(--hc-sm-height, 4) / var(--hc-sm-width, 3) * 100vw);
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0px 0px -72px;
+    min-width: 0px;
+  }
+
+  &-inner {
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 32px;
+
+    @include _744 {
+      height: 100%;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 0px 0px 32px 32px;
+      background: #fff;
+    }
+
+    &__picture {
+      display: block;
+      position: relative;
+      height: 100%;
+
+      & img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        object-position: center top;
+      }
+    }
+  }
+}
+
+.guide-profile-info {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  padding-inline: 20px;
+  width: 100%;
+  z-index: 1;
+  padding-inline: 0px;
+ 
+  @include _744 {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-inline: 20px;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &__name {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 20px;
+    text-align: center;
+   
+
+
+    & h4 {
+      font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji";
+      background: transparent;
+      letter-spacing: normal;
+      line-height: 1.2;
+      font-size: 24px;
+      text-align: left;
+      color: #FB6542;
+      font-weight: 900;
+      margin-right: 16px;
+    }
+
+    & svg {
+      color: #fff;
+      fill: rgba(0, 153, 153, 0.6);
+      font-size: 24px;
+      border-radius: 100%;
+    }
+  }
+
+  &__desc {
+    width: auto;
+    font-size: 16px;
+    line-height: 27px;
+    text-align: center;
+    padding-bottom: 100px;
+  }
+
+  &__date {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 16px !important;
+    font-size: 14px;
+    color: #545454;
+  }
+
+  &__followers {
+    overflow-x: auto;
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    &-l {
+      box-sizing: border-box;
+      margin: 0px 40px 16px 0px;
+      min-width: 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 24px;
+
+      & h5 {
+        color: #FB6542;
+        font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        font-weight: 700;
+        background: transparent;
+        letter-spacing: normal;
+        font-size: 20px;
+        line-height: 27px;
+        color: #009999;
+      }
+
+      & p {
+        color: #375E97;
+        font-size: 16px;
+      }
+    }
+
+    &-r {
+      cursor: pointer;
+      margin-bottom: 24px;
+      box-sizing: border-box;
+      margin: 0px 40px 16px 0px;
+      min-width: 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      & h5 {
+        font-size: 20px;
+        line-height: 27px;
+        font-weight: 700;
+        color: #FB6542;
+      }
+
+      & p {
+        color: #375E97;
+        font-size: 16px;
+      }
+    }
+  }
+
+  &__cities {
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    align-self: center;
+    text-decoration: underline;
+    color: #375E97;
+    &-btn {
+      display: flex;
+      width: auto;
+      margin-right: 0.5rem;
+      margin-bottom: 1rem;
+      padding-inline-start: 0.75rem;
+      padding-inline-end: 0.75rem;
+      padding-top: 0.25rem;
+      cursor: pointer;
+      padding-bottom: 0.25rem;
+      border-radius: 32px;
+      transition: all 0.2s ease 0s;
+      border: 1px solid #000000;
+      min-width: fit-content;
+
+      & h5 {
+        font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        font-size: 12px;
+        line-height: 17px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 600;
+        display: block;
+        white-space: nowrap;
+        margin-bottom: 0;
+        text-align: center;
+      }
+    }
+  }
+
+  &__inner {
+    max-width: 960px;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    padding: 32px;
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #fff;
+
+    @include _744 {
+      max-width: 100%;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 50px;
+      height: auto;
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 24px;
+      background: #fff;
+    }
+
+    &-data {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      max-width: 100%;
+      width: 100%;
+      
+    }
+  }
+}
+
+.guide-profile-nav {
+  -webkit-box-pack: center;
+  justify-content: center;
+  margin-bottom: 64px;
+  display: flex;
+  width: 100%;
+
+  @include _744 {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  &-list {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    overflow: auto hidden;
+    max-width: 1062px;
+
+    @include _744 {
+      display: flex;
+      justify-content: left;
+      width: auto;
+      flex-direction: column;
+    }
+
+    &-li {
+      display: block;
+      padding: 0px 20px 6px;
+      position: relative;
+      cursor: pointer;
+      color: #375E97;
+      
+
+      &-line {
+        position: absolute;
+        right: calc(10% - 10px);
+        bottom: 0px;
+        background-color: #375E97;
+        height: 5px;
+        width: 90%;
+        border-radius: 32px;
+        transform: none;
+        transform-origin: 50% 50% 0px;
+      }
+
+      & span {
+        cursor: pointer;
+        white-space: nowrap;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 43px;
+      }
+    }
+  }
+}
+
+.li-secondary {
+  color: #375E97;
+  opacity: 70%;
+
+  &:hover {
+    color: #000;
+  }
+}
+
+
+
+.guide-info {
+  background-image: url("https://res.cloudinary.com/localie/image/upload/f_auto,w_1920,,/v1655300963/destinations/tr-istanbul2.jpg");
+  background-size: cover;
+  border-radius: 30px 30px 0px 0px;
+  margin-top: -32px !important;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  @include _744 {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &-content {
+    padding-inline: 40px;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include _744 {
+      display: flex;
+      flex-direction: column;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      width: 100%;
+      padding-inline: 20px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      z-index: 1;
+    }
+    &-card {
+      max-width: 960px;
+      padding: 40px;
+      width: 100%;
+      margin: 0px 0px 40px !important;
+      min-width: 0px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      @include _744 {
+        box-sizing: border-box;
+        margin: 0px 0px 40px;
+        min-width: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+        width: auto;
+      }
+
+      &-btns {
+        flex-direction: row;
+        display: flex;
+
+        @include _744 {
+          flex-direction: column;
+        }
+
+        &-link {
+          font-size: 18px;
+          padding-inline: 32px;
+          line-height: 32px;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          margin-bottom: 0px;
+          margin-right: 40px;
+          height: max-content;
+          min-width: 3rem;
+          display: inline-flex;
+          appearance: none;
+          -webkit-box-align: center;
+          text-decoration: none;
+          align-items: center;
+          -webkit-box-pack: center;
+          justify-content: center;
+          user-select: none;
+          position: relative;
+          white-space: nowrap;
+          vertical-align: middle;
+          outline: transparent solid 2px;
+          outline-offset: 2px;
+          border-radius: 12px;
+          transition: all 0.3s ease 0s;
+          color: #fff;
+          background: #000;
+          width: 100%;
+
+          @include _744 {
+            font-size: 16px;
+            padding-inline: 24px;
+            line-height: 24px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            min-width: 2.5rem;
+          }
+        }
+      }
+
+      & h1 {
+        text-align: center;
+        font-weight: 900;
+        font-size: 44px;
+        line-height: 60px;
+        margin-bottom: 48px;
+
+        @include _744 {
+          font-size: 28px;
+          line-height: 38px;
+          font-weight: 900;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+      }
+
+      &-desc {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 0 40px;
+
+        & p {
+          text-align: center;
+          font-size: 16px;
+          width: 80%;
+          color: #545454;
+          margin-top: 0.25rem;
+          margin-bottom: 0.25rem;
+
+          @include _744 {
+            width: 100%;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mb-btn {
+  @include _744 {
+    margin-bottom: 16px !important;
+  }
+}
+
+.link-2 {
+  background: #ff5b5b;
+  color: #fff;
+}
+
+.btn-guide-profile {
+  background-color: #375E97;
+  padding: 10px 50px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 20px;
+  align-self: center;
+}
+.btn-flex {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
+}

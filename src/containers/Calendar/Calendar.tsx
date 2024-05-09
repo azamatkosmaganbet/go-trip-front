@@ -15,7 +15,7 @@ const MyCalendar = () => {
     }
   }, [store.user.id]);
   const [booking, setbooking] = useState<IBooking>();
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<{ title: string; start: Date; end: string; bookingInfo: IBooking; }[]>([]);
   useEffect(() => {
     const eventsData = store.bookings.map((item) => ({
       title: "",

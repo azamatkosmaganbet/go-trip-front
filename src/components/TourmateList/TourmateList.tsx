@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { FC} from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,7 +19,7 @@ const TourmateList: FC<TourmateListProps> = ({ data, title, type }) => {
 
       <div className="tourmate-cards">
         <Swiper
-          slidesPerView={Math.min(1, data?.length)}
+          slidesPerView={Math.min(3, data?.length)}
           spaceBetween={20}
           breakpoints={{
             640: {

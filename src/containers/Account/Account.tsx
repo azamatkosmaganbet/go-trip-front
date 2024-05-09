@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { HiOutlineUserAdd } from "react-icons/hi";
 import { useParams } from "react-router-dom";
 import InfoCard from "../../components/InfoCard/InfoCard";
@@ -16,10 +16,10 @@ import { FaRegCommentDots } from "react-icons/fa6";
 import { FiTrash2 } from "react-icons/fi";
 const Account = () => {
   const { store } = useContext(Context);
-  const fileInputRef = useRef(null);
+
   const { id } = useParams<{ id: string }>();
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
-
+  avatarFile;
   // const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
   //   const file = e.target.files && e.target.files[0];
   //   setAvatarFile(file || null);
@@ -156,7 +156,11 @@ const Account = () => {
                 icon={<HiOutlineSupport />}
               />
               <InfoCard type="combined" tag="About us" icon={<BsPeople />} />
-              <InfoCard type="combined" tag="Review" icon={<FaRegCommentDots />} />
+              <InfoCard
+                type="combined"
+                tag="Review"
+                icon={<FaRegCommentDots />}
+              />
               <InfoCard
                 type="combined"
                 tag="Delete my personal data"
@@ -166,7 +170,14 @@ const Account = () => {
               />
             </div>
 
-            <InfoCard color="red" logout={handleLogout} whichHandler="logout" tag="Log out" type="solo" title="Log out" />
+            <InfoCard
+              color="red"
+              logout={handleLogout}
+              whichHandler="logout"
+              tag="Log out"
+              type="solo"
+              title="Log out"
+            />
           </div>
         </div>
       </div>

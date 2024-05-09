@@ -1,5 +1,5 @@
 import { API_URL } from "@/constants/api";
-import { IBooking } from "@/interfaces/IBooking";
+import { IBooking, IBookingPost } from "@/interfaces/IBooking";
 import { ICity, ICityData } from "@/interfaces/ICity";
 import { IGuide } from "@/interfaces/IGuide";
 import { ITrip } from "@/interfaces/ITrip";
@@ -24,8 +24,10 @@ export default class Store {
   city = {} as ICityData;
   isAuth = false;
   isLoading = false;
-  bookings = [] as IBooking[]
-  guidesCalendar = [] as IGuide[]
+  bookings = [] as IBooking[];
+  guidesCalendar = [] as IGuide[];
+  modalFirst = false;
+  modalSecond = true;
 
   constructor() {
     makeAutoObservable(this);
@@ -77,6 +79,14 @@ export default class Store {
 
   setCalendarGuidesDefault () {
     this.guidesCalendar = [];
+  }
+
+  setFirstModal (arg:boolean) {
+    this.modalFirst = arg
+  }
+
+  setSecondModal (arg:boolean) {
+    this.modalSecond = arg
   }
 
 
@@ -160,7 +170,7 @@ export default class Store {
     try {
       const formData = new FormData();
       formData.append("file", avatarFile);
-      const response = await axios.put(`${API_URL}/update/${id}`, formData, {
+      await axios.put(`${API_URL}/update/${id}`, formData, {
         withCredentials: true, // если вам нужны куки при запросе
         headers: {
           "Content-Type": "multipart/form-data",
@@ -247,10 +257,10 @@ export default class Store {
     }
   }
 
-  async createBooking(data: IBooking) {
+  async createBooking(data: IBookingPost) {
     try {
       this.setLoading(true);
-      const response = await BookingService.createBooking(data);
+      await BookingService.createBooking(data);
 
       toast.success("Вы успешо забронировали тур");
     } catch (e: any) {
@@ -334,7 +344,7 @@ export default class Store {
   async updateUserStatus(id: string, status: string) {
     try {
       this.setLoading(true);
-      const response = await axios
+      await axios
         .put(`${API_URL}/update/guide-status/${id}`, { status: status })
         .then(() => {
           this.getGuides();

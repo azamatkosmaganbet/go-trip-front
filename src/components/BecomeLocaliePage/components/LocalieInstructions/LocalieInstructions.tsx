@@ -1,4 +1,3 @@
-import React from "react";
 import "./LocalieInstructions.scss";
 const LocalieInstructions = () => {
   return (
