@@ -13,6 +13,7 @@ import Interview from "./containers/Account/application/interview/Interview";
 import MyCalendar from "./containers/Calendar/Calendar";
 import Guide from "./containers/Guide/Guide";
 import MakeBookingModal from "./containers/Booking/modal/makeBookingModal";
+import GuideListPage from "./containers/GuideListPage/GuideListPage";
 function App() {
   return (
     <BrowserRouter>
@@ -30,6 +31,7 @@ function App() {
         <Route element={<Guide />} path="/guide/:id" />
         <Route element={<MakeBookingModal />} path="/booking" />
         <Route element={<MakeBookingModal />} path="/trip/:id" />
+        <Route element={<GuideListPage />} path="/admin" />
           {/* 
          
           

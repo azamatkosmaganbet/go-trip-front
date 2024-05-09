@@ -1,12 +1,12 @@
 
 import "./LocalieHero.scss";
-
+import  hero from "@/assets/heroGuide/heroGuide.png"
 const LocalieHero = () => {
   return (
     <div className="localie-hero">
       <img
         alt="Hero"
-        src="/heroGuide/heroGuide.png"
+        src={hero}
       />
       <div className="localie-hero-content">
         <div className="localie-hero-text">
