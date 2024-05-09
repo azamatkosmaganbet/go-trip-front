@@ -4,6 +4,12 @@ import { CiMenuBurger } from "react-icons/ci";
 import { useContext, useEffect, useState } from "react";
 import { Context } from "@/store/context";
 import { observer } from "mobx-react-lite";
+import { BASE_URL } from "@/constants/api";
+import logo from "@/assets/icons/logoTrip.png"
+import home from "@/assets/icons/home.png"
+import trips from "@/assets/icons/trips.png"
+import chat from "@/assets/icons/chat.png"
+import blog from "@/assets/icons/blog.png"
 const Header = () => {
   const navigate = useNavigate();
   const { store } = useContext(Context);
@@ -35,7 +41,7 @@ const Header = () => {
       <header className="header">
         <div className="header-container">
           <div className="header-logo" style={{cursor: "pointer"}} onClick={()=>{navigate('/')}}>
-            <img src="../../../public/icons/logoTrip.png" alt="Logo" />
+            <img src={logo} alt="Logo" />
           </div>
           <div className="burger-icon" onClick={toggleMenu}>
             <CiMenuBurger />
@@ -47,7 +53,7 @@ const Header = () => {
               }}
               className="header-button"
             >
-              <img src="../../../public/icons/home.png" alt="Button 1" />
+              <img src={home} alt="Button 1" />
             </button>
             <button
               onClick={() => {
@@ -55,7 +61,7 @@ const Header = () => {
               }}
               className="header-button"
             >
-              <img src="../../../public/icons/trips.png" alt="Button 2" />
+              <img src={trips}alt="Button 2" />
             </button>
             <button
               onClick={() => {
@@ -63,7 +69,7 @@ const Header = () => {
               }}
               className="header-button"
             >
-              <img src="../../../public/icons/chat.png" alt="Button 3" />
+              <img src={chat} alt="Button 3" />
             </button>
             <button
               onClick={() => {
@@ -71,7 +77,7 @@ const Header = () => {
               }}
               className="header-button"
             >
-              <img src="../../../public/icons/blog.png" alt="Button 4" />
+              <img src={blog} alt="Button 4" />
             </button>
           </div>
           <div className="header-auth">
@@ -79,7 +85,7 @@ const Header = () => {
               <div className="header-avatar">
                 <img
                   className="avatar-img"
-                  src={`http://localhost:5000/${store.user.avatar}`}
+                  src={`${BASE_URL}/${store.user.avatar}`}
                   alt="Avatar"
                   onClick={() => {
                     navigate(`account/${store.user.id}`);

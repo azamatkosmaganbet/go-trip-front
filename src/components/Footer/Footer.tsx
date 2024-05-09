@@ -1,11 +1,11 @@
 import "./Footer.scss";
-
+import logo from "@/assets/icons/logoFooter.png"
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-columns">
         <div className="footer-column-logo">
-          <div className="footer-logo"><img src="../../../public/icons/logoFooter.png" alt="Logo" /></div>
+          <div className="footer-logo"><img src={logo} alt="Logo" /></div>
         </div>
         <div className="footer-column">
           <div className="footer-menu">

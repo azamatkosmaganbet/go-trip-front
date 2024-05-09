@@ -1,5 +1,6 @@
 import "./Hero.scss";
 import { CiSearch } from "react-icons/ci";
+import hero from "@/assets/main/heroMain.png"
 const Hero = () => {
   return (
     <div className="hero">
@@ -7,7 +8,7 @@ const Hero = () => {
         <picture className="hero-picture">
           <img
             alt="find a Go"
-            src="../../../public/main/heroMain.png"
+            src={hero}
           />
         </picture>
       </div>

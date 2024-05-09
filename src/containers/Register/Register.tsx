@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import "./Register.scss";
 import { Context } from "@/store/context";
 import { observer } from "mobx-react-lite";
+import google from "@/assets/icons/flat-color-icons_google.png";
+import facebook from "@/assets/icons/logos_facebook.png";
 const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -142,13 +144,13 @@ const Register = () => {
         <div className="login-social">
           <div className="login-social-flex">
             <img
-              src="../../../public/icons/flat-color-icons_google.png"
+              src={google}
               alt="Logo"
             />
             <p>Continue with Google</p>
           </div>
           <div className="login-social-flex">
-            <img src="../../../public/icons/logos_facebook.png" alt="Logo" />
+            <img src={facebook} alt="Logo" />
             <p>Continue with Facebook</p>
           </div>
         </div>

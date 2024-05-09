@@ -3,7 +3,19 @@ import { FC, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.scss";
 import { Context } from "@/store/context";
-
+import logo from "@/assets/icons/logoTrip.png"
+import login1 from "@/assets/icons/login1.png"
+import login2 from "@/assets/icons/login2.png"
+import login3 from "@/assets/icons/login3.png"
+import login4 from "@/assets/icons/login4.png"
+import login5 from "@/assets/icons/login5.png"
+import login6 from "@/assets/icons/login6.png"
+import login7 from "@/assets/icons/login7.png"
+import login8 from "@/assets/icons/login8.png"
+import login9 from "@/assets/icons/login9.png"
+import login10 from "@/assets/icons/login10.png"
+import google from "@/assets/icons/flat-color-icons_google.png";
+import facebook from "@/assets/icons/logos_facebook.png";
 const Login: FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -28,29 +40,29 @@ const Login: FC = () => {
     <div className="login-container">
       <header className="login-header">
         <div className="login-logo">
-          <img src="../../../public/icons/logoTrip.png" alt="Logo" />
+          <img src={logo} alt="Logo" />
         </div>
       </header>
 
       <main className="login-main">
         <div className="login-photos">
           <div className="login-photos-column">
-            <img src="../../../public/icons/login1.png" alt="Photo 1" />
-            <img src="../../../public/icons/login2.png" alt="Photo 2" />
+            <img src={login1} alt="Photo 1" />
+            <img src={login2}  alt="Photo 2" />
           </div>
           <div className="login-photos-column">
-            <img src="../../../public/icons/login3.png" alt="Photo 3" />
-            <img src="../../../public/icons/login4.png" alt="Photo 4" />
-            <img src="../../../public/icons/login5.png" alt="Photo 5" />
+            <img src={login3}  alt="Photo 3" />
+            <img src={login4}  alt="Photo 4" />
+            <img src={login5}  alt="Photo 5" />
           </div>
           <div className="login-photos-column">
-            <img src="../../../public/icons/login6.png" alt="Photo 1" />
-            <img src="../../../public/icons/login7.png" alt="Photo 2" />
+            <img src={login6}  alt="Photo 1" />
+            <img src={login7}  alt="Photo 2" />
           </div>
           <div className="login-photos-column">
-            <img src="../../../public/icons/login8.png" alt="Photo 3" />
-            <img src="../../../public/icons/login9.png" alt="Photo 4" />
-            <img src="../../../public/icons/login10.png" alt="Photo 5" />
+            <img src={login8}  alt="Photo 3" />
+            <img src={login9}  alt="Photo 4" />
+            <img src={login10}  alt="Photo 5" />
           </div>
         </div>
         <div className="login-form">
@@ -88,13 +100,13 @@ const Login: FC = () => {
           <div className="login-social">
             <div className="login-social-flex">
               <img
-                src="../../../public/icons/flat-color-icons_google.png"
+                src={google}
                 alt="Logo"
               />
               <p>Continue with Google</p>
             </div>
             <div className="login-social-flex">
-              <img src="../../../public/icons/logos_facebook.png" alt="Logo" />
+              <img src={facebook} alt="Logo" />
               <p>Continue with Facebook</p>
             </div>
           </div>

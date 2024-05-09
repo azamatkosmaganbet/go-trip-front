@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import "./interview.scss";
+import application from "@/assets/main/application.png"
+import interview from "@/assets/main/interview.png"
 const Interview = () => {
   const navigate = useNavigate();
   return (
     <div className="interview-container">
-      <img src="../../../../public/main/application.png" alt="" />
+      <img src={application} alt="" />
 
       <div className="interview">
         <h2>
@@ -15,7 +17,7 @@ const Interview = () => {
           first-served basis, the Administrator will make an appointment for you
           within 3 days and send all the information. Stay tuned!🧡
         </p>
-        <img src="../../../../../public/main/interview.png" alt="" />
+        <img src={interview} alt="" />
         <button
           className="btn"
           onClick={() => {

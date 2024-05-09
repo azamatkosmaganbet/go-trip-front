@@ -14,6 +14,7 @@ import { HiOutlineSupport } from "react-icons/hi";
 import { BsPeople } from "react-icons/bs";
 import { FaRegCommentDots } from "react-icons/fa6";
 import { FiTrash2 } from "react-icons/fi";
+import { BASE_URL } from "@/constants/api";
 const Account = () => {
   const { store } = useContext(Context);
 
@@ -76,7 +77,7 @@ const Account = () => {
                   ) : store.user.avatar ? (
                     <img
                       alt=""
-                      src={`http://localhost:5000/${store.user.avatar}`}
+                      src={`${BASE_URL}/${store.user.avatar}`}
                     />
                   ) : (
                     <span className="default-user-avatar">

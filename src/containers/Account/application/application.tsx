@@ -1,6 +1,7 @@
 import { ChangeEvent, useContext, useState } from "react";
 import "./applications.scss";
 import { Context } from "@/store/context";
+import application from "@/assets/main/application.png"
 const Application = () => {
   const { store } = useContext(Context);
   const [formData, setFormData] = useState({
@@ -34,7 +35,7 @@ const Application = () => {
   };
   return (
     <div className="application-container">
-      <img src="../../../../public/main/application.png" alt="" />
+      <img src={application} alt="" />
       <div className="input-container">
         <h2>
           <span>STEP 1: </span> please fill out the form
