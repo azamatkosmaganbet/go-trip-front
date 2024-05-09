@@ -25,5 +25,13 @@
 @mixin _767 {
   @media (max-width: 767px) {
     @content;
+  } 
+}
+
+@mixin _500 {
+  @media (max-width: 500px) {
+    @content;
   }
+
+  
 }

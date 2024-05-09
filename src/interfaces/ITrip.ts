@@ -12,3 +12,14 @@ export interface ITrip {
   guide: IUser;
   routes: IRoute[];
 }
+
+export interface ITripGuide {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  day: number;
+  guide: string;
+  routes: IRoute[];
+}

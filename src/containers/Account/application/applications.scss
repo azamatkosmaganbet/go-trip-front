@@ -1,0 +1,64 @@
+.application-container {
+  position: relative;
+  margin-top: -10%;
+  & img {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+.input-container {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10% 20%;
+  border-radius: 10px;
+  background-color: #fff;
+  & h2 {
+    font-size: 25px;
+    color: #375e97;
+    font-weight: bold;
+    & span {
+      color: #fb6542;
+    }
+  }
+  & button {
+    background-color: #375e97;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 50px;
+    cursor: pointer;
+  }
+
+  & button:hover {
+    background-color: #2d4876;
+  }
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #375e97;
+}

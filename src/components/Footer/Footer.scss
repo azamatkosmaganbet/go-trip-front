@@ -1,3 +1,4 @@
+@import "../../styles/mixins";
 .footer {
   background-color: #375e97;
   color: white;
@@ -14,18 +15,24 @@
   max-width: 1200px; 
   margin-top: 20px;
   gap: 20px;
+  @include _744 {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-.footer-column {
-  flex: 0.5; 
-}
 
 .footer-column-logo {
-  flex: 1;
+  flex-grow: 1;
 }
 
 .footer-logo {
   font-size: 24px;
+  flex-grow: 1;
+  & img {
+    width: 200px;
+    height: 50px;
+  }
 }
 
 .footer-menu ul,

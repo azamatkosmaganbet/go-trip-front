@@ -12,19 +12,19 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-
+    position: relative;
     .header-logo img {
       height: 40px;
     }
-
-    
 
     .header-buttons {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-grow: 0.5;
-
+      @include _767 {
+        display: none;
+      }
       .header-button {
         border: none;
         background: none;
@@ -42,10 +42,10 @@
       cursor: pointer;
       padding: 5px 10px;
       border-radius: 10px;
-      background-color: #FB6542;
+      background-color: #fb6542;
       color: #ffffff;
-      min-width: 80px; 
-      text-align: center; 
+      min-width: 80px;
+      text-align: center;
     }
 
     .header-auth-button:first-child {
@@ -59,16 +59,82 @@
       padding: 5px 10px;
       border: 1px solid;
       border-radius: 10px;
-      border-color: #375E97;
+      border-color: #375e97;
       background-color: #ffffff;
-      color: #375E97;
-      min-width: 80px; 
-      text-align: center; 
+      color: #375e97;
+      min-width: 80px;
+      text-align: center;
     }
 
     .header-auth-button:first-child {
       margin-right: 10px;
     }
+  }
+}
+
+.show-menu .header-buttons {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  z-index: 1000;
+}
+.header-avatar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.avatar-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.burger-icon {
+  display: none; // Изначально скрыто на экранах шириной больше 767px
+  cursor: pointer;
+ 
+}
+
+.burger-icon span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: #000;
+  margin-bottom: 5px;
+}
+
+// Показываем иконку бургера на экранах шириной 767px и меньше
+@include _767 {
+  .header-buttons {
+    display: none;
     
   }
+
+  .header-buttonsshow-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 45%;
+    top: 100%;
+    z-index: 120;
+    background-color: #ffffff;
+    padding: 20px;
+    align-items: center;
+  }
+
+  .burger-icon {
+    display: block;
+
+  }
+
 }

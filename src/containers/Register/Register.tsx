@@ -18,7 +18,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await store.registration(email, password, name, surname, phone);
+      await store.registration(email, password, name, surname, phone, navigate);
 
       setEmail("");
       setName("");
@@ -38,7 +38,7 @@ const Register = () => {
         navigate("/");
       });
     }
-  }, [navigate, store]);
+  },  [navigate,store]);
 
   if (store.isLoading) {
     return <Spinner />;

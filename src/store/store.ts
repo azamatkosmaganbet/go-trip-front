@@ -1,10 +1,15 @@
 import { API_URL } from "@/constants/api";
+import { IBooking } from "@/interfaces/IBooking";
 import { ICity, ICityData } from "@/interfaces/ICity";
 import { IGuide } from "@/interfaces/IGuide";
 import { ITrip } from "@/interfaces/ITrip";
 import { AuthResponse } from "@/interfaces/user/AuthResponse";
 import { IUser } from "@/interfaces/user/IUser";
 import AuthService from "@/services/AuthService";
+import BookingService from "@/services/BookingService";
+import CityService from "@/services/CityService";
+import GuideService from "@/services/GuideService";
+import TripService from "@/services/TripService";
 import axios from "axios";
 import { makeAutoObservable } from "mobx";
 import { toast } from "react-toastify";
@@ -19,6 +24,8 @@ export default class Store {
   city = {} as ICityData;
   isAuth = false;
   isLoading = false;
+  bookings = [] as IBooking[]
+  guidesCalendar = [] as IGuide[]
 
   constructor() {
     makeAutoObservable(this);
@@ -60,6 +67,19 @@ export default class Store {
     this.isLoading = bool;
   }
 
+  setBooking (booking: IBooking[]) {
+    this.bookings = booking
+  }
+
+  setCalendarGuides (guide: IGuide) {
+    this.guidesCalendar.push(guide)
+  }
+
+  setCalendarGuidesDefault () {
+    this.guidesCalendar = [];
+  }
+
+
   async login(email: string, password: string, navigate: any) {
     this.setLoading(true);
     try {
@@ -83,7 +103,8 @@ export default class Store {
     password: string,
     name: string,
     surname: string,
-    phone: string
+    phone: string,
+    navigate: any
   ) {
     try {
       const response = await AuthService.registration(
@@ -91,14 +112,14 @@ export default class Store {
         password,
         name,
         surname,
-        phone
+        phone,
       );
       localStorage.setItem("token", response.data.accessToken);
       console.log(response);
 
       this.setAuth(true);
       this.setUser(response.data.user);
-
+      navigate("/");
       toast.success("Вы успешно зарегистрировались!");
     } catch (e: any) {
       toast.error(e.response?.data?.message);
@@ -107,6 +128,8 @@ export default class Store {
 
   async logout() {
     try {
+      const response = await AuthService.logout();
+      console.log(response);
       localStorage.removeItem("token");
       this.setAuth(false);
       this.setUser({} as IUser);
@@ -123,8 +146,6 @@ export default class Store {
       });
 
       localStorage.setItem("token", response.data.accessToken);
-      console.log(response);
-      console.log(this.isLoading);
 
       this.setAuth(true);
       this.setUser(response.data.user);
@@ -140,7 +161,7 @@ export default class Store {
       const formData = new FormData();
       formData.append("file", avatarFile);
       const response = await axios.put(`${API_URL}/update/${id}`, formData, {
-        withCredentials: true,
+        withCredentials: true, // если вам нужны куки при запросе
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -155,6 +176,286 @@ export default class Store {
       toast.error(e.response?.data?.message);
     }
   }
+
+  // async getUsersByRole(role: string) {
+  //   try {
+  //     this.setLoading(true);
+  //     const response = await UserService.fetchUsersByRole(role);
+
+  //     this.setGuides(response.data);
+  //   } catch (e: any) {
+  //     toast.error("Ошибка при получении пользователей");
+  //   } finally {
+  //     this.setLoading(false);
+  //   }
+  // }
+
+  async getGuideById(id: string) {
+    try {
+      this.setLoading(true);
+      const response = await GuideService.fetchGuideById(id);
+
+      this.setGuide(response.data);
+
+      this.setCalendarGuides(response.data)
+      this
+    } catch (e: any) {
+      toast.error("Ошибка при получении Гида");
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async getGuides() {
+    try {
+      this.setLoading(true);
+      const response = await GuideService.fetchGuides();
+
+      this.setGuides(response.data);
+    } catch (e: any) {
+      toast.error("Ошибка при получении Гида");
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async getTripsByGuideId(guideId: string) {
+    try {
+      this.setLoading(true);
+      const response = await TripService.fetchTripsByGuideId(guideId);
+
+      this.setTrips(response.data);
+    } catch (e: any) {
+      toast.error("Ошибка при получении Трипа");
+      this.setLoading(false);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async getTripById(id: string) {
+    try {
+      this.setLoading(true);
+      const response = await TripService.fetchTripById(id);
+
+      this.setTrip(response.data);
+    } catch (e: any) {
+      toast.error("Ошибка при получении Трипа");
+      this.setLoading(false);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async createBooking(data: IBooking) {
+    try {
+      this.setLoading(true);
+      const response = await BookingService.createBooking(data);
+
+      toast.success("Вы успешо забронировали тур");
+    } catch (e: any) {
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async getCities() {
+    try {
+      this.setLoading(true);
+      const response = await CityService.fetchCities();
+
+      this.setCities(response.data);
+    } catch (e: any) {
+      toast.error("Ошибка при получении Трипа");
+      this.setLoading(false);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async getCitiesById(id: string) {
+    try {
+      this.setLoading(true);
+      const response = await CityService.fetchCityById(id);
+
+      this.setCity(response.data);
+    } catch (e: any) {
+      toast.error("Ошибка при получении Трипа");
+      this.setLoading(false);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async createCity(name: string, imageFile: File) {
+    try {
+      this.setLoading(true);
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("file", imageFile);
+
+      const response = await axios.post(`${API_URL}/create/city`, formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      toast.success("Вы успешно создали город !");
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to create city");
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async createGuideRequest(data: any) {
+    try {
+      this.setLoading(true);
+
+      const response = await axios.post(`${API_URL}/send-guide-request`, data, {
+        withCredentials: true,
+      });
+      toast.success(
+        "Вы успешно подали запрос ! Наши модераторы уже обрабатывают"
+      );
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
+      return response.data;
+    } catch (e) {
+      toast.error("Что то пошло не так");
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async updateUserStatus(id: string, status: string) {
+    try {
+      this.setLoading(true);
+      const response = await axios
+        .put(`${API_URL}/update/guide-status/${id}`, { status: status })
+        .then(() => {
+          this.getGuides();
+        });
+
+      toast.success("Вы успешно обновили статус !");
+    } catch (e: any) {
+      toast.error("Ошибка при обнолвении статуса");
+      this.setLoading(false);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async createTrip(data: any) {
+    try {
+      this.setLoading(true);
+      console.log(data);
+
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      formData.append("day", data.day);
+      formData.append("city", data.city);
+      formData.append("guideId", data.guide);
+      formData.append("file", data.file);
+
+      const response = await axios.post(`${API_URL}/create/trip`, formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      toast.success("Вы успешно создали трип!");
+
+      return response.data;
+    } catch (e) {
+      toast.error("Что то пошло не так");
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async createRoute(data: any) {
+    try {
+      this.setLoading(true);
+      const response = await axios.post(`${API_URL}/create/route`, data)
+      toast.success("Вы успешно создали маршрут!");
+      
+      return response.data;
+
+      
+    } catch (e: any) {
+      toast.error("Что то пошло не так");
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async createStop(data: any) {
+    try {
+      this.setLoading(true);
+      console.log(data);
+
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("description", data.description);
+      formData.append("route", data.route);
+      formData.append("file", data.image);
+
+      const response = await axios.post(`${API_URL}/create/stop`, formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      toast.success("Вы успешно создали трип!");
+
+      return response.data;
+    } catch (e) {
+      toast.error("Что то пошло не так");
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async updateTripById(id: string, data: Partial<ITrip>) {
+    try {
+      this.setLoading(true);
+      const response = await TripService.updateTripById(id, data);
+
+      toast.success("Вы успешно обновили страницу");
+      this.getTripById(id);
+      return response.data;
+    } catch (e: any) {
+      toast.error("Что то пошло не так")
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async getBookings() {
+    try {
+      this.setLoading(true);
+      this.setCalendarGuidesDefault()
+      const response = await BookingService.getBooking(this.user.id);
+      this.setBooking(response.data);
+      response.data.map((data:IBooking) =>{
+        this.getGuideById(data.tour.guide)
+      })
+      
+    } catch (e: any) {
+      toast.error("Ошибка при получении Брони");
+      this.setLoading(false);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
 }
 
 

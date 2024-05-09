@@ -1,0 +1,64 @@
+@import "../../../../styles/mixins";
+
+.go-commision {
+  padding-inline: 90px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: #d9d9d941;
+  border-radius: 30px 30px 0px 0px;
+
+  @include _744 {
+    padding-inline-end: 1.25rem;
+    padding-inline-start: 1.25em;
+  }
+  &-content {
+    padding-top: 20px;
+    padding-bottom: 50px;
+    & h2 {
+      font-size: 30px;
+      font-weight: bold;
+      flex-grow: 1;
+    }
+  }
+  &-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    & p {
+      max-width: 350px;
+      flex-grow: 1;
+    }
+
+    &-step {
+      max-width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 20px;
+      margin-right: 20px;
+      padding: 20px;
+      & h6 {
+        font-size: 30px;
+        color: #fb6542;
+      }
+      &-blue {
+        max-width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 10px;
+        & h6 {
+          font-size: 30px;
+          color: #375e97;
+        }
+      }
+    }
+  }
+}
